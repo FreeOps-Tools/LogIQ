@@ -1,1 +1,3 @@
-# Monitoring Tool
+# LogIQ
+
+Performance Monitoring Tool
