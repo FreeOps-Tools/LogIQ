@@ -1,0 +1,135 @@
+.url-checker-container {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 50px;
+  margin: 20px auto;
+  max-width: 500px;
+
+  /* Setting the container to the centre */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+}
+
+@media screen and (min-width: 768px) {
+  .url-checker-container {
+    /* width: 50%; */
+    margin: 20px auto;
+  }
+}
+
+.url-label {
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.url-input-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.url-input {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 10px;
+  flex-grow: 1;
+}
+
+.url-button {
+  background-color: #0077cc;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.status {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.status.up {
+  background-color: #d1e7dd;
+  color: #155724;
+}
+
+.status.down {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.mode-buttons-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.mode-button {
+  background-color: #0077cc;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+/* Dark mode */
+.dark {
+  background-color: #222;
+  color: #fff;
+}
+
+.dark .url-checker-container {
+  background-color: #444;
+  border-color: #eee;
+  color: #fff;
+}
+
+.dark .url-label {
+  color: #fff;
+}
+
+.dark .url-input {
+  background-color: #333;
+  border-color: #eee;
+  color: #fff;
+}
+
+.dark .url-button {
+  background-color: #0077cc;
+  color: #fff;
+}
+
+.dark .status.up {
+  background-color: #155724;
+  color: #d1e7dd;
+}
+
+.dark .status.down {
+  background-color: #721c24;
+  color: #f8d7da;
+}
+
+.dark .mode-button {
+  background-color: #0077cc;
+  color: #fff;
+}
