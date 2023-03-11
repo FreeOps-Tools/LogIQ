@@ -9,9 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.3.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-fetch-hook": "^1.9.5"
+    "react-fetch-hook": "^1.9.5",
+    "use-http": "^1.0.27"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

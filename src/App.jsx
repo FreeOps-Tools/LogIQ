@@ -1,26 +1,26 @@
 import React, { useState } from "react";
-import useFetch from "react-fetch-hook";
+import useFetch from "use-http";
 import "./App.css";
 
 function UrlChecker() {
   const [url, setUrl] = useState("");
   const [status, setStatus] = useState("");
+  const { get, response } = useFetch("");
 
   const handleUrlChange = (event) => {
     setUrl(event.target.value);
   };
 
   const handleCheckUrl = async () => {
-    try {
-      const response = await fetch(`https://${url}`);
-  
-      if (response.status >= 200 && response.status < 300) {
+    if (url.startsWith("http")) {
+      await get(url);
+      if (response.ok) {
         setStatus("UP");
       } else {
         setStatus("DOWN");
       }
-    } catch (error) {
-      setStatus("DOWN");
+    } else {
+      setStatus("INVALID_URL");
     }
   };
 
@@ -46,13 +46,16 @@ function UrlChecker() {
           className="url-input"
         />
         <button onClick={handleCheckUrl} className="url-button">
-          Check URL
+          Check Status
         </button>
       </div>
-      {status && (
+      {status && status !== "INVALID_URL" && (
         <div className={`status ${status.toLowerCase()}`}>
           Status: {status}
         </div>
+      )}
+      {status === "INVALID_URL" && (
+        <div className="invalid-url">Invalid URL. Please enter a valid URL.</div>
       )}
       <div className="mode-buttons-container">
         <button onClick={handleDarkMode} className="mode-button">
