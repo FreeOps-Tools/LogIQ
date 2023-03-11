@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useFetch from "react-fetch-hook"
+import useFetch from "react-fetch-hook";
 import "./App.css";
 
 function UrlChecker() {
@@ -10,17 +10,18 @@ function UrlChecker() {
     setUrl(event.target.value);
   };
 
-  const handleCheckUrl = () => {
-    fetch(url).then((response) => {
-        if (response.ok) {
-          setStatus("UP");
-        } else {
-          setStatus("DOWN");
-        }
-      })
-      .catch(() => {
+  const handleCheckUrl = async () => {
+    try {
+      const response = await fetch(`https://${url}`);
+  
+      if (response.status >= 200 && response.status < 300) {
+        setStatus("UP");
+      } else {
         setStatus("DOWN");
-      });
+      }
+    } catch (error) {
+      setStatus("DOWN");
+    }
   };
 
   const handleDarkMode = () => {
