@@ -1,4 +1,4 @@
-# LogIQ
+# ⏲ LogIQ
 
 Performance Monitoring Tool
 
