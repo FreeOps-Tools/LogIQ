@@ -1,6 +1,8 @@
 # ⏲ LogIQ
 
-Performance Monitoring Tool
+What is LogIQ?
+
+LogIQ is a open source Performance Monitoring Tool, f
 
 ## 🛡️ License
 
