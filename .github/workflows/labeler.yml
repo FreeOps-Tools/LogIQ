@@ -1,15 +1,37 @@
-name: "Issue Labeler"
+name: GitHub - Label PRs
 on:
-  issues:
-    types: [opened, edited]
+  pull_request_target
+
+permissions:
+  contents: read
 
 jobs:
   triage:
-    runs-on: ubuntu-latest
+    permissions:
+      # for actions/labeler to determine modified files
+      contents: read
+      # for actions/labeler to add labels to PRs
+      pull-requests: write
+    runs-on: ubuntu-20.04
     steps:
-    - uses: github/issue-labeler@v2.5 #May not be the latest version
-      with:
-        repo-token: "${{ secrets.TOKEN }}"
-        configuration-path: .github/labeler.yml
+      - uses: actions/labeler@ba790c862c380240c6d5e7427be5ace9a05c754b # v4
+        with:
+          repo-token: '${{ secrets.GITHUB_TOKEN }}'
+          sync-labels: true
+
+
+# name: "Issue Labeler"
+# on:
+#   issues:
+#     types: [opened, edited]
+
+# jobs:
+#   triage:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: github/issue-labeler@v2.5 #May not be the latest version
+#       with:
+#         repo-token: "${{ secrets.TOKEN }}"
+#         configuration-path: .github/labeler.yml
         # not-before: 2023-01-15T02:54:32Z
         # enable-versioned-regex: 0
