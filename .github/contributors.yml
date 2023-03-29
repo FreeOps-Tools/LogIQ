@@ -15,8 +15,8 @@ jobs:
 
       - name: Set up Git user
         run: |
-          git config user.name "Your Name"
-          git config user.email "your-email@example.com"
+          git config user.name ${{ secrets.GIT_USERNAME }}
+          git config user.email ${{ secrets.GIT_EMAIL }}
 
       - name: Get contributors
         id: contributors
@@ -34,5 +34,5 @@ jobs:
       - name: Commit changes
         run: |
           git add README.md
-          git commit -m "Add contributors"
+          git commit -m "add a new contributor"
           git push
