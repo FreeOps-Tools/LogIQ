@@ -1,0 +1,24 @@
+name: 💡 Request to be member in FreeOps Org
+description: Do you wish to join FreeOps organization?
+title: "[Get Invite] <description>"
+labels: ["⭐ goal: addition","🚦 status: awaiting triage"]
+body:
+  - type: textarea
+    id: username
+    attributes:
+      label: GITHUB USERNAME OR MAIL
+      description: Your github username
+    validations:
+      required: true
+  - type: textarea
+    id: extrainfo
+    attributes:
+      label: Additional information
+      description: Is there anything else we should know about this idea?
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking your time to fill out this! You'll receive an invite in less 24hrs.
+        
