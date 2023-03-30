@@ -1,6 +1,6 @@
-name: 💡 Request to join FreeOps Org
+name: 💡 Request to Join FreeOps Org
 description: Do you wish to join FreeOps organization?
-title: "[Get Invite] <username>"
+title: "Requesting to Join FreeOps Github Organisation"
 labels: ["⭐ goal: addition","🚦 status: awaiting triage"]
 assignees: "rufilboy"
 body:
