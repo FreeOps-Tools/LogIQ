@@ -1,7 +1,8 @@
-name: 💡 Request to be member in FreeOps Org
+name: 💡 Request to join FreeOps Org
 description: Do you wish to join FreeOps organization?
-title: "[Get Invite] <description>"
+title: "[Get Invite] <username>"
 labels: ["⭐ goal: addition","🚦 status: awaiting triage"]
+assignees: "rufilboy"
 body:
   - type: textarea
     id: username
