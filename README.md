@@ -16,4 +16,4 @@ LogIQ is licensed under the **MIT License** - see the [LICENSE](LICENSE) file fo
 
 ## 🙏 Support
 
-Don't forget to leave a star ⭐️.
+Don't forget to leave a star ⭐️
