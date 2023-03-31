@@ -11,18 +11,57 @@ function UrlChecker() {
     setUrl(event.target.value);
   };
 
-  const handleCheckUrl = async () => {
-    if (url.startsWith("http")) {
-      await get(url);
-      if (response.ok) {
-        setStatus("UP");
-      } else {
+  // ==============================================================
+  const handleCheckUrl = async (url) => {
+    try {
+      if (!url.startsWith("http://") && !url.startsWith("https://")) {
+        setStatus("INVALID_URL");
+      return;
+      };
+
+        const response = await fetch(url);
+        console.log("Response status:", response.status);
+        if (response.status >= 200 && response.status < 300) {
+          setStatus("UP");
+        } else {
+          setStatus("DOWN");
+        }
+      } catch (err) {
         setStatus("DOWN");
       }
-    } else {
-      setStatus("INVALID_URL");
-    }
   };
+  
+  
+  // ==============================================================
+
+  // ----------------------------------------------------
+  // const handleCheckUrl = async () => {
+  //   if (url.startsWith("http")) {
+  //     await get(url);
+  //     if (response.ok) {
+  //       setStatus("UP");
+  //     } else {
+  //       setStatus("DOWN");
+  //     }
+  //   } else {
+  //     setStatus("INVALID_URL");
+  //   }
+  // };
+
+  // async function checkUrlStatus(url) {
+  //   try {
+  //     const response = await fetch(url);
+  //     if (response.status >= 200 && response.status < 300) {
+  //       return "up";
+  //     } else {
+  //       return "down";
+  //     }
+  //   } catch (err) {
+  //     return "down";
+  //   }
+  // };
+  
+  // --------------------------------------------------------------
 
   const handleDarkMode = () => {
     document.body.classList.add("dark");

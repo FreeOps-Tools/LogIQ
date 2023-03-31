@@ -10,6 +10,16 @@
 - Any contributions you make are **truly appreciated** - see this [CONTRIBUTING.md](CONTRIBUTING.md) file for details.
 - Let's continue contributing to keep the community _active_ and _growing_.
 
+## 🤝 Contributors
+
+<a href="https://github.com/FreeOps-Tools/LogIQ/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=FreeOps-Tools/LogIQ" />
+</a>
+
+## 📈 Analytics
+
+> [![Status](https://repobeats.axiom.co/api/embed/06ce5b60cff43fcfea8658562813c176fb527bce.svg 'Analytics image')](https://github.com/FreeOps-Tools/LogIQ/pulse)
+
 ## 🛡️ License
 
 LogIQ is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
