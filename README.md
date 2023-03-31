@@ -18,7 +18,7 @@
 
 ## 📈 Analytics
 
-> [![Status](https://repobeats.axiom.co/api/embed/06ce5b60cff43fcfea8658562813c176fb527bce.svg 'Analytics image')](https://github.com/FreeOps-Tools/LogIQ/pulse)
+> [![Status](https://repobeats.axiom.co/api/embed/c941da3ab86064a4f482d148f005eb1427abe599.svg 'Analytics image')](https://github.com/FreeOps-Tools/LogIQ/pulse)
 
 ## 🛡️ License
 
