@@ -11,10 +11,12 @@ const App = () => {
   const [status, setStatus] = useState({});
   const [theme, setTheme] = useState("light");
 
+  // const apiUrl = process.env.REACT_APP_API_URL; // get the API URL from the environment variable
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/api/analyze", { url });
+      const response = await axios.post(import.meta.env.VITE_API_URL, { url });
       setStatus(response.data);
     } catch (error) {
       console.error(error);
@@ -54,4 +56,3 @@ const App = () => {
 };
 
 export default App;
-
