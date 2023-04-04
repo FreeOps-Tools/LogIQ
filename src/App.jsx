@@ -47,7 +47,7 @@ const App = () => {
         <div className={`status ${status.isUp ? "up" : "down"}`}>
           <p>Status: {status.isUp ? "UP" : "DOWN"}</p>
           {status.ipAddress && <p>IP Address: {status.ipAddress}</p>}
-          <p>Uptime: {status.uptime}%</p>
+          <p>Response Time: {status.uptime}%</p>
         </div>
       )}
     </div>
