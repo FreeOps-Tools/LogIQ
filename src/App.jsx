@@ -1,111 +1,58 @@
+// App.jsx - frontend
+
+
 import React, { useState } from "react";
-import useFetch from "use-http";
+import axios from "axios";
+import { FiSun, FiMoon } from "react-icons/fi";
 import "./App.css";
 
-function UrlChecker() {
+const App = () => {
   const [url, setUrl] = useState("");
-  const [status, setStatus] = useState("");
-  const { get, response } = useFetch("");
+  const [status, setStatus] = useState({});
+  const [theme, setTheme] = useState("light");
 
-  const handleUrlChange = (event) => {
-    setUrl(event.target.value);
-  };
+  // const apiUrl = process.env.REACT_APP_API_URL; // get the API URL from the environment variable
 
-  // ==============================================================
-  const handleCheckUrl = async (url) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      if (!url.startsWith("http://") && !url.startsWith("https://")) {
-        setStatus("INVALID_URL");
-      return;
-      };
-
-        const response = await fetch(url);
-        console.log("Response status:", response.status);
-        if (response.status >= 200 && response.status < 300) {
-          setStatus("UP");
-        } else {
-          setStatus("DOWN");
-        }
-      } catch (err) {
-        setStatus("DOWN");
-      }
-  };
-  
-  
-  // ==============================================================
-
-  // ----------------------------------------------------
-  // const handleCheckUrl = async () => {
-  //   if (url.startsWith("http")) {
-  //     await get(url);
-  //     if (response.ok) {
-  //       setStatus("UP");
-  //     } else {
-  //       setStatus("DOWN");
-  //     }
-  //   } else {
-  //     setStatus("INVALID_URL");
-  //   }
-  // };
-
-  // async function checkUrlStatus(url) {
-  //   try {
-  //     const response = await fetch(url);
-  //     if (response.status >= 200 && response.status < 300) {
-  //       return "up";
-  //     } else {
-  //       return "down";
-  //     }
-  //   } catch (err) {
-  //     return "down";
-  //   }
-  // };
-  
-  // --------------------------------------------------------------
-
-  const handleDarkMode = () => {
-    document.body.classList.add("dark");
+      const response = await axios.post(import.meta.env.VITE_API_URL, { url });
+      setStatus(response.data);
+    } catch (error) {
+      console.error(error);
+      setStatus({ isUp: false, ipAddress: null, uptime: 0 });
+    }
   };
 
-  const handleLightMode = () => {
-    document.body.classList.remove("dark");
+  const handleToggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
   };
 
   return (
-    <div className="url-checker-container">
-      <label htmlFor="url-input" className="url-label">
-        Enter a URL:
-      </label>
-      <div className="url-input-container">
+    <div className={`App ${theme}`}>
+      <div className="toggle-theme" onClick={handleToggleTheme}>
+        {theme === "light" ? <FiMoon /> : <FiSun />}
+      </div>
+      <h1>LogIQ</h1>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="url">Enter URL:</label>
         <input
           type="text"
+          id="url"
           value={url}
-          onChange={handleUrlChange}
-          id="url-input"
-          className="url-input"
+          onChange={(e) => setUrl(e.target.value)}
         />
-        <button onClick={handleCheckUrl} className="url-button">
-          Check Status
-        </button>
-      </div>
-      {status && status !== "INVALID_URL" && (
-        <div className={`status ${status.toLowerCase()}`}>
-          Status: {status}
+        <button type="submit">Analyze</button>
+      </form>
+      {status.isUp !== undefined && (
+        <div className={`status ${status.isUp ? "up" : "down"}`}>
+          <p>Status: {status.isUp ? "UP" : "DOWN"}</p>
+          {status.ipAddress && <p>IP Address: {status.ipAddress}</p>}
+          <p>Uptime: {status.uptime}%</p>
         </div>
       )}
-      {status === "INVALID_URL" && (
-        <div className="invalid-url">Invalid URL. Please enter a valid URL.</div>
-      )}
-      <div className="mode-buttons-container">
-        <button onClick={handleDarkMode} className="mode-button">
-          Dark Mode
-        </button>
-        <button onClick={handleLightMode} className="mode-button">
-          Light Mode
-        </button>
-      </div>
     </div>
   );
-}
+};
 
-export default UrlChecker;
+export default App;
