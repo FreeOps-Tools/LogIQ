@@ -19,7 +19,7 @@ const App = () => {
       setStatus(response.data);
     } catch (error) {
       console.error(error);
-      setStatus({ isUp: false, ipAddress: null, uptime: 0 });
+      setStatus({ isUp: false, ipAddress: null, uptime: 0, responseTime: 0 });
     }
   };
 
@@ -47,7 +47,8 @@ const App = () => {
         <div className={`status ${status.isUp ? "up" : "down"}`}>
           <p>Status: {status.isUp ? "UP" : "DOWN"}</p>
           {status.ipAddress && <p>IP Address: {status.ipAddress}</p>}
-          <p>Response Time: {status.uptime}%</p>
+          <p>Uptime: {status.uptime}%</p>
+          <p>Response Time: {status.responseTime}</p>
         </div>
       )}
     </div>
