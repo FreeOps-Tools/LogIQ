@@ -48,7 +48,7 @@ const App = () => {
           <p>Status: {status.isUp ? "UP" : "DOWN"}</p>
           {status.ipAddress && <p>IP Address: {status.ipAddress}</p>}
           <p>Uptime: {status.uptime}%</p>
-          <p>Response Time: {status.responseTime}</p>
+          <p>Response Time: {status.responseTime}s</p>
         </div>
       )}
     </div>
