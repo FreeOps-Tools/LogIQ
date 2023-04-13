@@ -6,8 +6,6 @@
 
 Before **creating** an Issue for `features`/`bugs`/`improvements` please follow these steps:
 
-> *Note: this does not apply to creating/editing your profile*
-
 1. search existing issues before creating a new issue (probably someone raised this already)
 1. if it doesn't exist create a new issue giving as much context as possible (please select the correct Issue type, for example `bug` or `feature`)
 1. all Issues are automatically given the label `status: waiting for triage`. Please wait until the maintainers review the Issue and update the labels
