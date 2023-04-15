@@ -1,5 +1,13 @@
 # Contributing Guide
 
+When contributing to this repository, please first discuss the change you wish to make via issue before making a change.
+
+## How to collaborate
+
+You can [open an issue](https://help.github.com/articles/creating-an-issue/) and give us your suggestions as to how we can improve this open- source project to improve the experience.
+
+You can also [fork this project](https://help.github.com/articles/fork-a-repo/) and send a [pull request](https://help.github.com/articles/using-pull-requests/) to fix any mistakes that you have found.
+
 ## Issues & Pull Requests
 
 ### Creating an Issue
@@ -8,21 +16,23 @@ Before **creating** an Issue for `features`/`bugs`/`improvements` please follow 
 
 1. search existing issues before creating a new issue (probably someone raised this already)
 1. if it doesn't exist create a new issue giving as much context as possible (please select the correct Issue type, for example `bug` or `feature`)
-1. all Issues are automatically given the label `status: waiting for triage`. Please wait until the maintainers review the Issue and update the labels
-1. look out for when the Issue label changes to `status: ready for dev`
-1. comment on the Issue asking for it to be assigned to you (do not tag maintainers as all maintainers receive your comment notifications)
+1. comment on the Issue asking for it to be assigned to you.
 1. **only** start working on this issue (and open a Pull Request) when it has been assigned to you - this will prevent confusion, multiple people working on the same issue and work not being used.
 
 ### Working on an Issue (get it assigned to you)
 
 Before working on an existing Issue please follow these steps:
-
-1. please do not ask to be assigned an issue that has the label `status: awaiting triage` - this creates more notifications for maintainers and it will not be assigned
-1. look out for the Issue label `status: ready for dev` (if it does not have this label, your work might not be accepted)
-1. comment asking for the issue to be assigned to you (do not tag any maintainers as all maintainers receive your comment notifications)
-1. after the issue is assigned to you, you can start working on it
 1. do **not** enable GitHub Actions on your fork
 1. reference the Issue in your Pull Request (for example `closes #123`)
+
+Please note we have a [LogIQ's code of conduct](https://github.com/ossu/code-of-conduct). please follow it in all your interactions with the project.
+
+## Pull Request Process
+
+Ensure any install or build dependencies are removed before the end of the layer when doing a build.
+
+Update the README.md with details of changes to the interface, this includes new environment variables, exposed ports, useful file locations and container parameters.
+
 
 > Notes:
 > - any issues that have no activity after 3 weeks will be unassigned and re-assigned to someone else
@@ -32,14 +42,6 @@ Before working on an existing Issue please follow these steps:
 
 We welcome everyone to review Pull Requests, it is a great way to learn and network.
 
-### DOs
-- be kind and respectful, we use inclusive, gender neutral language (for example `they/them` instead of `guy/man`)
-- use inline comments to explain your suggestions
-- use inline suggestions to propose changes
 
-### DON'Ts
-- don't be rude, disrespectful or aggressive
-- do not repeat feedback, this creates more noise than value (check the existing conversation), use GitHub reactions if you agree/disagree with a comment
-- do not blindly approve pull requests to improve your GitHub contributors graph
 
 ---
