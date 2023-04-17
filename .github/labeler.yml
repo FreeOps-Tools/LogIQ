@@ -4,10 +4,10 @@
 'scope: web':
   - public/**/*
   - src/**/*
-  # - curriculum/challenges/**/*
 
-'platform: client':
-  - client/**/*
+
+'scope: api':
+  - api/**/*
 
 # 'platform: api':
 #   - api-server/**/*
