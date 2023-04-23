@@ -1,13 +1,38 @@
-.App {
-  background-color: #fff;
-  color: #333;
+
+body {
+  margin: 0;
+  padding: 0;
   font-family: sans-serif;
-  text-align: center;
-  padding: 2rem;
+  color: #333;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  padding: 1px 50px;
+}
+
+.header li {
+  list-style: none;
+  display: inline-block;
+  padding: 0 15px;
+}
+
+.logo {
+  margin-right: auto;
+  color: #333;
+  font-size: 1.8rem;
+}
+
+.logo.dark {
+  color: #fff;
 }
 
 .App.dark {
-  background-color: #333;
+  background-color: #222222;
+  height: 100vh;
   color: #fff;
 }
 
@@ -17,10 +42,8 @@ h1 {
 }
 
 form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 2rem;
+  margin-top: 1%;
+  text-align: center;
 }
 
 label {
@@ -29,21 +52,42 @@ label {
 }
 
 input {
-  width: 100%;
-  padding: 0.5rem;
-  margin-bottom: 1rem;
+  width: 60%;
+  margin-right: 15px;
+  padding: 1rem;
   font-size: 1rem;
-  border: none;
-  border-bottom: 2px solid #333;
+  border: 1px solid #333;
+  border-radius: 5px;
+  outline: none;
 }
 
-button {
-  padding: 0.5rem 1rem;
+input:focus {
+  border: 2px solid #333;
+}
+
+.error {
+  color: #cc0000;
+  text-align: center;
+}
+
+.button {
+  padding: 1rem 2rem;
   font-size: 1rem;
+  margin-top: 2%;
   background-color: #333;
   color: #fff;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
+}
+
+.button:hover {
+  background-color: #4d4d4d;
+}
+
+.button.dark {
+  background-color: #fff;
+  color: #333;
 }
 
 .status {
@@ -59,14 +103,38 @@ button {
 }
 
 .status.down {
-  background-color: red;
+  background-color: #ED2B2A;
   color: #fff;
 }
 
 .toggle-theme {
   position: absolute;
-  top: 1rem;
+  top: 1.5rem;
   right: 1rem;
   font-size: 2rem;
   cursor: pointer;
+}
+
+/* Mobile view  */
+
+@media (min-width: 320px) and (max-width: 480px) {
+
+  .header {
+    padding: 1px 20px;
+  }
+
+  form {
+    margin-top: 8%;
+  }
+
+  input {
+    margin: auto;
+    padding: 1.2rem;
+    width: 80%;
+  }
+
+  button {
+    padding: 1.2rem 8rem;
+    margin: 5% auto;
+  }
 }
