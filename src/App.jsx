@@ -5,6 +5,9 @@ import "./App.css";
 
 import Header from "./Components/Header";
 
+
+// hopefully this is a nice project to contributed on
+
 const App = () => {
   const [url, setUrl] = useState("");
   const [status, setStatus] = useState({});
