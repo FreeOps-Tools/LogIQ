@@ -8,8 +8,8 @@ function Header({ theme }) {
       <h1 className={`logo ${theme}`}>LogIQ</h1>
       <nav>
         <ul>
-          <li><FontAwesomeIcon icon={faStar} style={{color: '#DAAA3F', marginRight: '5px'}}/>5</li>
-          <li><FontAwesomeIcon icon={faCodeFork} style={{color: '#768390', marginRight: '5px'}}/>5</li>
+          <li><FontAwesomeIcon icon={faStar} style={{color: '#DAAA3F', marginRight: '5px'}}/>9</li>
+          <li><FontAwesomeIcon icon={faCodeFork} style={{color: '#768390', marginRight: '5px'}}/>8</li>
         </ul>
       </nav>
     </header>
