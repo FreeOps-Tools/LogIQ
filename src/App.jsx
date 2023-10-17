@@ -3,7 +3,9 @@ import axios from "axios";
 import { FiSun, FiMoon } from "react-icons/fi";
 import "./App.css";
 
+
 import Header from "./Components/Header";
+import Footer from "./Components/Footer";
 
 const App = () => {
   const [url, setUrl] = useState("");
@@ -73,6 +75,7 @@ const App = () => {
           <p>Response Time: {status.responseTime}s</p>
         </div>
       )}
+      <Footer/>
     </div>
   );
 };
