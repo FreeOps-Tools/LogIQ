@@ -1,11 +1,13 @@
- FROM node:latest
+FROM node:18-bullseye
 
- WORKDIR /app
+WORKDIR /app
 
- COPY package.json /app
+COPY package*.json vite.config.js /app/
 
- RUN npm install
+RUN npm prune --production
 
- COPY . .
+COPY . .
 
- CMD [ "npm", "run", "dev" ]
+EXPOSE 3000
+
+CMD [ "npm", "start" ]
