@@ -33,7 +33,6 @@ Ensure any install or build dependencies are removed before the end of the layer
 
 Update the README.md with details of changes to the interface, this includes new environment variables, exposed ports, useful file locations and container parameters.
 
-
 > Notes:
 > - any issues that have no activity after 3 weeks will be unassigned and re-assigned to someone else
 > - only request to be assigned an issue if you know how to work on it
@@ -41,7 +40,5 @@ Update the README.md with details of changes to the interface, this includes new
 ## Reviewing Pull Requests
 
 We welcome everyone to review Pull Requests, it is a great way to learn and network.
-
-
 
 ---
