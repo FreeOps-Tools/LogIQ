@@ -62,7 +62,7 @@ const App = () => {
           id="url"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
-          placeholder="http://example.com"
+          placeholder="https://example.com/"
         />
         <button type="submit" className={`button ${theme}`}>
           Analyze
