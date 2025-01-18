@@ -2,7 +2,7 @@ name: 💡 Request to Join FreeOps Org
 description: Do you wish to join FreeOps organization?
 title: "Requesting to Join FreeOps Github Organisation"
 labels: ["invite me to the organisation⭐","🚦 status: awaiting triage"]
-assignees: "rufilboy"
+assignees: "rufilboss"
 body:
   - type: textarea
     id: username
@@ -21,5 +21,5 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking your time to fill out this! You'll receive an invite in less 24hrs.
+        Thanks for taking your time to fill out this! You'll receive an invite in less than 24hrs.
         

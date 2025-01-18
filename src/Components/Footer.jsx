@@ -3,10 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter, faFacebook, faGithub } from '@fortawesome/free-brands-svg-icons'; // Import the appropriate icons
 
 function Footer() {
+  let date = new Date();
+  let year = date.getFullYear();
   return (
     <footer className="footer">
       <div className="footer-content">
-        <p>&copy; 2023 LogIQ</p>
+        <p>Copyright © {year} LogIQ</p>
         <ul className="social-links">
           <li>
             <a href="#">

@@ -25,3 +25,4 @@ dist-ssr
 api/node_modules
 .env
 .env.example
+.yarn

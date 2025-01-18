@@ -141,16 +141,15 @@ input:focus {
 
 /* Footer Styles */
 .footer {
-  position: fixed; /* Set the position to fixed */
-  bottom: 0; /* Stick it to the bottom of the viewport */
-  width: 100%; /* Make it full-width */
+  position: relative; /* Remove fixed positioning */
+  width: 100%; /* Full-width footer */
   background-color: #333; /* Background color for the footer */
   color: #fff; /* Text color for the footer */
   padding: 15px 0; /* Add spacing to top and bottom */
-  /* Center the text and links within the footer */
-  text-align: center;
+  text-align: center; /* Center the text and links within the footer */
   border-top-left-radius: 20px; /* Curved top-left corner */
   border-top-right-radius: 20px; /* Curved top-right corner */
+  margin-top: auto; /* Push footer to the bottom when content is short */
 }
 
 .footer-content {
@@ -163,6 +162,7 @@ input:focus {
 .social-links {
   list-style: none; /* Remove bullet points */
   padding: 0;
+  margin: 10px 0 0; /* Add spacing above the links */
 }
 
 .social-links li {
@@ -179,4 +179,18 @@ input:focus {
 
 .social-links a:hover {
   color: #DAAA3F; /* Change color on hover */
+}
+
+/* Ensure footer stays at the bottom when content is short */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Make the body span the full viewport height */
+  margin: 0; /* Remove default margin */
+}
+
+.App {
+  flex: 1; /* Allow the main content to grow and push the footer down */
+  display: flex;
+  flex-direction: column;
 }

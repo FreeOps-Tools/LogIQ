@@ -32,12 +32,26 @@ const App = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
     if (url === "") {
-      setFormError("Enter a valid url");
+      setFormError("Enter a valid URL");
+      return;
     }
+  
+    // Normalize the URL
+    let normalizedUrl = url.trim();
+    if (!/^https?:\/\//i.test(normalizedUrl)) {
+      normalizedUrl = `http://${normalizedUrl}`;
+    }
+  
     try {
-      const response = await axios.post(import.meta.env.VITE_API_URL, { url });
+      const response = await axios.post(import.meta.env.VITE_API_URL, { url: normalizedUrl });
       setStatus((prevStatus) => [response.data, ...prevStatus]);
+  
+      // Check if the URL is secure
+      if (!normalizedUrl.startsWith("https://")) {
+        setFormError("The site is not secure (uses HTTP). Consider using HTTPS.");
+      }
     } catch (error) {
       setStatus((prevStatus) => [
         { isUp: false, ipAddress: null, uptime: 0, responseTime: 0 },
@@ -45,6 +59,7 @@ const App = () => {
       ]);
     }
   };
+
 
   const handleToggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
@@ -62,7 +77,7 @@ const App = () => {
           id="url"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
-          placeholder="http://example.com"
+          placeholder="https://example.com/"
         />
         <button type="submit" className={`button ${theme}`}>
           Analyze
