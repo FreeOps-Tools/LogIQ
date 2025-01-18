@@ -139,67 +139,6 @@ input:focus {
   }
 }
 
-
-/* Footer Styles */
-.footer {
-  position: fixed; /* Sticks the footer to the bottom */
-  bottom: 0; /* Ensures it stays at the bottom of the viewport */
-  width: 100%; /* Full-width footer */
-  background-color: #333; /* Dark background color */
-  color: #fff; /* White text for contrast */
-  padding: 20px 0; /* Add spacing for better readability */
-  text-align: center; /* Center-align the text and content */
-  border-top-left-radius: 15px; /* Rounded corners for a modern look */
-  border-top-right-radius: 15px;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for elevation */
-  z-index: 1000; /* Ensure it stays above other elements */
-}
-
-.footer-content {
-  display: flex;
-  flex-direction: column; /* Stack content vertically */
-  align-items: center; /* Center-align the content */
-  gap: 10px; /* Add spacing between elements */
-}
-
-/* Social Links */
-.social-links {
-  list-style: none; /* Remove default bullet points */
-  padding: 0; /* Remove padding */
-  margin: 10px 0 0; /* Add margin for spacing */
-  display: flex; /* Display links inline */
-  gap: 15px; /* Add spacing between links */
-}
-
-.social-links li {
-  margin: 0; /* Reset margin */
-}
-
-/* Link Styles */
-.social-links a {
-  text-decoration: none; /* Remove underline */
-  color: #fff; /* White text */
-  font-size: 16px; /* Set a readable font size */
-  transition: color 0.3s ease, transform 0.2s ease; /* Smooth hover effects */
-}
-
-.social-links a:hover {
-  color: #DAAA3F; /* Highlight color on hover */
-  transform: scale(1.1); /* Slightly enlarge the link on hover */
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .footer-content {
-    flex-direction: column; /* Stack elements on smaller screens */
-    gap: 8px; /* Adjust spacing */
-  }
-
-  .social-links a {
-    font-size: 14px; /* Slightly smaller text for smaller devices */
-  }
-}
-
 /* Footer Styles */
 .footer {
   position: relative; /* Remove fixed positioning */
