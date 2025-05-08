@@ -22,6 +22,7 @@ Before **creating** an Issue for `features`/`bugs`/`improvements` please follow 
 ### Working on an Issue (get it assigned to you)
 
 Before working on an existing Issue please follow these steps:
+
 1. do **not** enable GitHub Actions on your fork
 1. reference the Issue in your Pull Request (for example `closes #123`)
 
@@ -34,8 +35,9 @@ Ensure any install or build dependencies are removed before the end of the layer
 Update the README.md with details of changes to the interface, this includes new environment variables, exposed ports, useful file locations and container parameters.
 
 > Notes:
-> - any issues that have no activity after 3 weeks will be unassigned and re-assigned to someone else
-> - only request to be assigned an issue if you know how to work on it
+
+- any issues that have no activity after 3 weeks will be unassigned and re-assigned to someone else
+- only request to be assigned an issue if you know how to work on it
 
 ## Reviewing Pull Requests
 
