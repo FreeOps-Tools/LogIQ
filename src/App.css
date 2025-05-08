@@ -193,4 +193,6 @@ margin: 0; /* Remove default margin */
 flex: 1; /* Allow the main content to grow and push the footer down */
 display: flex;
 flex-direction: column;
+background-color: #fff;
+height: 100vh; /* Full height for the main content */
 }
