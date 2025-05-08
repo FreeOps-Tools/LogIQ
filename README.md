@@ -1,5 +1,7 @@
 # ⏲ LogIQ
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/6dd89b33-9f37-44cf-8de7-2ca4298a73be/deploy-status)](https://app.netlify.com/sites/devlogiq/deploys)
+
 ## What is LogIQ?🤔
 
 **LogIQ** is an open-source web performance monitoring tool that provides a comprehensive analysis of website performance on both desktop and mobile devices. With LogIQ, website owners and developers can gain deep insights into their website's performance and take actions to improve the speed and user experience.
