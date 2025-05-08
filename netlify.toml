@@ -1,8 +1,0 @@
-[build]
-command = "npm run build"
-publish = "dist"
-
-[build.environment]
-NPM_FLAGS = "--legacy-peer-deps"
-NODE_VERSION = "22.14.0"
-NETLIFY_USE_YARN = "false"
