@@ -1,4 +1,4 @@
-# ⏲ LogIQ [![Netlify Status](https://api.netlify.com/api/v1/badges/6dd89b33-9f37-44cf-8de7-2ca4298a73be/deploy-status)](https://app.netlify.com/sites/devlogiq/deploys)
+# ⏲ LogIQ [![Netlify Status](https://api.netlify.com/api/v1/badges/57ec33bf-514c-459d-a658-fc9a546aa6de/deploy-status)](https://app.netlify.com/sites/logiq/deploys)
 
 ## What is LogIQ?🤔
 
