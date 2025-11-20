@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { FiSun, FiMoon } from "react-icons/fi";
 import "./App.css";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
@@ -110,10 +109,7 @@ const App = () => {
 
   return (
     <div className={`App ${theme}`}>
-      <div className="toggle-theme" onClick={handleToggleTheme}>
-        {theme === "light" ? <FiMoon /> : <FiSun />}
-      </div>
-      <Header theme={theme} />
+      <Header theme={theme} onToggleTheme={handleToggleTheme} />
       <section className="analyzer-panel">
         <form onSubmit={handleSubmit} className="url-form">
           <label htmlFor="url">Test a public URL</label>

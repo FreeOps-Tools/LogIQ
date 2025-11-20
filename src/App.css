@@ -8,11 +8,24 @@
   box-sizing: border-box;
 }
 
+html,
 body {
   margin: 0;
+  padding: 0;
   min-height: 100vh;
+}
+
+body {
   background: radial-gradient(circle at top, #eef2ff, #f4f7fb 45%, #ffffff 80%);
   color: #0f172a;
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
@@ -26,9 +39,48 @@ body {
 .header nav ul {
   display: flex;
   gap: 1rem;
+  align-items: center;
   list-style: none;
   padding: 0;
   margin: 0;
+}
+
+.header nav ul li {
+  display: flex;
+  align-items: center;
+}
+
+.theme-toggle-item {
+  margin-left: 0.5rem;
+}
+
+.theme-toggle-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid rgba(15, 23, 42, 0.15);
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  cursor: pointer;
+  color: inherit;
+  font-size: 1.25rem;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.App.dark .theme-toggle-button {
+  border-color: rgba(226, 232, 240, 0.25);
+}
+
+.theme-toggle-button:hover {
+  background: rgba(15, 23, 42, 0.05);
+  transform: scale(1.05);
+}
+
+.App.dark .theme-toggle-button:hover {
+  background: rgba(226, 232, 240, 0.1);
 }
 
 .logo {
@@ -45,8 +97,9 @@ body {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: 1.5rem clamp(1rem, 4vw, 3rem) 3rem;
+  padding: 1.5rem clamp(1rem, 4vw, 3rem) 0;
   transition: background-color 0.3s ease, color 0.3s ease;
+  padding-bottom: 0;
 }
 
 .App.dark {
@@ -54,23 +107,6 @@ body {
   color: #e2e8f0;
 }
 
-.toggle-theme {
-  position: fixed;
-  top: 1.5rem;
-  right: 1.5rem;
-  font-size: 1.5rem;
-  color: inherit;
-  border: 1px solid rgba(15, 23, 42, 0.15);
-  border-radius: 999px;
-  padding: 0.35rem 0.85rem;
-  cursor: pointer;
-  backdrop-filter: blur(8px);
-  z-index: 10;
-}
-
-.App.dark .toggle-theme {
-  border-color: rgba(226, 232, 240, 0.25);
-}
 
 .analyzer-panel,
 .results-panel,
@@ -200,8 +236,9 @@ body {
 
 .status-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
+  max-width: 100%;
 }
 
 .status-card {
@@ -362,7 +399,9 @@ body {
   background: #0f172a;
   color: #f8fafc;
   border-radius: 1.25rem 1.25rem 0 0;
-  padding: 1.5rem;
+  padding: 1.5rem clamp(1rem, 4vw, 3rem);
+  width: 100%;
+  flex-shrink: 0;
 }
 
 .App.dark .footer {
@@ -398,6 +437,37 @@ body {
 }
 
 @media (max-width: 768px) {
+  .header {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .header nav ul {
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .header nav ul li {
+    font-size: 0.9rem;
+  }
+
+  .theme-toggle-button {
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: 1.1rem;
+  }
+
+  .App {
+    padding: 1rem 1rem 0;
+    gap: 1.5rem;
+  }
+
+  .analyzer-panel,
+  .results-panel,
+  .preview-grid {
+    padding: 1.5rem;
+  }
+
   .input-row {
     flex-direction: column;
   }
@@ -408,5 +478,13 @@ body {
 
   .preview-grid__frames {
     grid-template-columns: 1fr;
+  }
+
+  .status-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer {
+    padding: 1.25rem 1rem;
   }
 }
