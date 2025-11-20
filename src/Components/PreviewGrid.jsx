@@ -33,7 +33,15 @@ function PreviewFrame({ url, index, delayMs }) {
 
     setState("queued");
     const timer = setTimeout(() => {
-      setSource(url);
+      // Add unique cache-busting parameters to each frame to capture different snapshots
+      // This simulates taking snapshots at different moments in time (like database snapshots)
+      // Each frame gets a unique timestamp + random component to force fresh fetch
+      const baseTimestamp = Date.now();
+      const frameTimestamp = baseTimestamp + (index * 50); // Stagger by 50ms per frame
+      const randomComponent = Math.random().toString(36).substring(7);
+      const separator = url.includes('?') ? '&' : '?';
+      const uniqueUrl = `${url}${separator}_t=${frameTimestamp}&_f=${index}&_r=${randomComponent}&_nocache=1`;
+      setSource(uniqueUrl);
       setStartedAt(performance.now());
       setState("loading");
     }, delayMs);
@@ -45,7 +53,7 @@ function PreviewFrame({ url, index, delayMs }) {
       setStartedAt(null);
       setLoadedAt(null);
     };
-  }, [url, delayMs]);
+  }, [url, delayMs, index]);
 
   const handleLoad = () => {
     setState("ready");

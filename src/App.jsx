@@ -71,11 +71,19 @@ const App = () => {
 
     try {
       const response = await axios.post(API_URL, { url: normalizedUrl });
+      // Ensure all fields are properly set with fallbacks
       const payload = {
-        ...response.data,
+        isUp: response.data.isUp ?? false,
+        ipAddress: response.data.ipAddress || null,
+        latencyMs: response.data.latencyMs ?? response.data.responseTime ? Number(response.data.responseTime) * 1000 : 0,
+        dnsLookupMs: response.data.dnsLookupMs ?? 0,
+        statusCode: response.data.statusCode || response.data.status || null,
+        uptime: response.data.uptime ?? 0,
         requestedUrl: normalizedUrl,
         checkedAt: new Date().toISOString(),
       };
+      console.log('API Response:', response.data);
+      console.log('Processed Payload:', payload);
       setStatus((prevStatus) => [payload, ...prevStatus].slice(0, 6));
       setActivePreviewUrl(normalizedUrl);
 

@@ -337,18 +337,28 @@ body {
 
 .preview-grid__frames {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
+  width: 100%;
+  max-width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .preview-grid__frames {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .preview-frame {
   border-radius: 1rem;
   border: 1px solid rgba(15, 23, 42, 0.08);
   overflow: hidden;
-  min-height: 220px;
+  height: 280px;
   display: flex;
   flex-direction: column;
   background: rgba(248, 250, 252, 0.8);
+  width: 100%;
+  min-width: 0;
 }
 
 .App.dark .preview-frame {
@@ -359,7 +369,10 @@ body {
 .preview-frame iframe {
   border: none;
   width: 100%;
+  height: 100%;
   flex: 1;
+  min-height: 0;
+  object-fit: contain;
 }
 
 .preview-placeholder {
@@ -478,6 +491,10 @@ body {
 
   .preview-grid__frames {
     grid-template-columns: 1fr;
+  }
+
+  .preview-frame {
+    height: 240px;
   }
 
   .status-grid {
