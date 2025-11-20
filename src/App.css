@@ -462,6 +462,124 @@ body {
   opacity: 0.8;
 }
 
+.lighthouse-metrics {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(15, 23, 42, 0.1);
+}
+
+.App.dark .lighthouse-metrics {
+  border-top-color: rgba(226, 232, 240, 0.1);
+}
+
+.lighthouse-metrics h4 {
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: inherit;
+}
+
+.lighthouse-scores {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.score-card {
+  text-align: center;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  background: rgba(15, 23, 42, 0.05);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+}
+
+.App.dark .score-card {
+  background: rgba(2, 6, 23, 0.5);
+  border-color: rgba(226, 232, 240, 0.1);
+}
+
+.score-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(15, 23, 42, 0.6);
+  margin-bottom: 0.5rem;
+}
+
+.App.dark .score-label {
+  color: rgba(226, 232, 240, 0.6);
+}
+
+.score-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.score-good {
+  color: #22c55e;
+}
+
+.score-average {
+  color: #f59e0b;
+}
+
+.score-poor {
+  color: #ef4444;
+}
+
+.performance-details {
+  margin-top: 1rem;
+}
+
+.performance-details h5 {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(15, 23, 42, 0.7);
+}
+
+.App.dark .performance-details h5 {
+  color: rgba(226, 232, 240, 0.7);
+}
+
+.metrics-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem 1rem;
+  margin: 0;
+}
+
+.metrics-list dt {
+  font-size: 0.75rem;
+  color: rgba(15, 23, 42, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.App.dark .metrics-list dt {
+  color: rgba(226, 232, 240, 0.6);
+}
+
+.metrics-list dd {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .lighthouse-scores {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .metrics-list {
+    grid-template-columns: 1fr;
+  }
+}
+
 .footer {
   margin-top: auto;
   background: #0f172a;

@@ -28,6 +28,24 @@ const App = () => {
       : `${numeric.toFixed(0)} ms`;
   };
 
+  const formatMetric = (value, isDecimal = false) => {
+    if (value === undefined || value === null || isNaN(value)) return "—";
+    const numeric = Number(value);
+    if (isNaN(numeric)) return "—";
+    if (isDecimal) {
+      return numeric.toFixed(3);
+    }
+    return numeric >= 1000
+      ? `${(numeric / 1000).toFixed(2)} s`
+      : `${numeric.toFixed(0)} ms`;
+  };
+
+  const getScoreColor = (score) => {
+    if (score >= 90) return 'good';
+    if (score >= 50) return 'average';
+    return 'poor';
+  };
+
   const safeHostname = (target) => {
     if (!target) return "Unknown";
     try {
@@ -257,6 +275,68 @@ const App = () => {
                   <div className="http-warning">
                     <strong>⚠️ Insecure Connection</strong>
                     <p>This site uses HTTP. Your data could be intercepted. Consider using HTTPS or securing your site.</p>
+                  </div>
+                )}
+                {statusObj.lighthouse && (
+                  <div className="lighthouse-metrics">
+                    <h4>Performance Metrics</h4>
+                    <div className="lighthouse-scores">
+                      <div className="score-card">
+                        <div className="score-label">Performance</div>
+                        <div className={`score-value score-${getScoreColor(statusObj.lighthouse.performance.score)}`}>
+                          {statusObj.lighthouse.performance.score}
+                        </div>
+                      </div>
+                      <div className="score-card">
+                        <div className="score-label">Accessibility</div>
+                        <div className={`score-value score-${getScoreColor(statusObj.lighthouse.accessibility.score)}`}>
+                          {statusObj.lighthouse.accessibility.score}
+                        </div>
+                      </div>
+                      <div className="score-card">
+                        <div className="score-label">Best Practices</div>
+                        <div className={`score-value score-${getScoreColor(statusObj.lighthouse.bestPractices.score)}`}>
+                          {statusObj.lighthouse.bestPractices.score}
+                        </div>
+                      </div>
+                      <div className="score-card">
+                        <div className="score-label">SEO</div>
+                        <div className={`score-value score-${getScoreColor(statusObj.lighthouse.seo.score)}`}>
+                          {statusObj.lighthouse.seo.score}
+                        </div>
+                      </div>
+                    </div>
+                    {statusObj.lighthouse.performance.metrics && (
+                      <div className="performance-details">
+                        <h5>Core Web Vitals</h5>
+                        <dl className="metrics-list">
+                          <div>
+                            <dt>First Contentful Paint</dt>
+                            <dd>{formatMetric(statusObj.lighthouse.performance.metrics.firstContentfulPaint)}</dd>
+                          </div>
+                          <div>
+                            <dt>Largest Contentful Paint</dt>
+                            <dd>{formatMetric(statusObj.lighthouse.performance.metrics.largestContentfulPaint)}</dd>
+                          </div>
+                          <div>
+                            <dt>Total Blocking Time</dt>
+                            <dd>{formatMetric(statusObj.lighthouse.performance.metrics.totalBlockingTime)}</dd>
+                          </div>
+                          <div>
+                            <dt>Cumulative Layout Shift</dt>
+                            <dd>{formatMetric(statusObj.lighthouse.performance.metrics.cumulativeLayoutShift, true)}</dd>
+                          </div>
+                          <div>
+                            <dt>Speed Index</dt>
+                            <dd>{formatMetric(statusObj.lighthouse.performance.metrics.speedIndex)}</dd>
+                          </div>
+                          <div>
+                            <dt>Time to Interactive</dt>
+                            <dd>{formatMetric(statusObj.lighthouse.performance.metrics.timeToInteractive)}</dd>
+                          </div>
+                        </dl>
+                      </div>
+                    )}
                   </div>
                 )}
                 <footer>
