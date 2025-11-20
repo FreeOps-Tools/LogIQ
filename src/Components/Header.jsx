@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCodeFork, faStar } from "@fortawesome/free-solid-svg-icons";
+import { FiSun, FiMoon } from "react-icons/fi";
 
-function Header({ theme }) {
+function Header({ theme, onToggleTheme }) {
   const [repoData, setRepoData] = useState({ stars: 0, forks: 0 });
 
   useEffect(() => {
@@ -43,6 +44,15 @@ function Header({ theme }) {
               style={{ color: "#768390", marginRight: "5px" }}
             />
             {repoData.forks}
+          </li>
+          <li className="theme-toggle-item">
+            <button
+              className="theme-toggle-button"
+              onClick={onToggleTheme}
+              aria-label="Toggle dark/light mode"
+            >
+              {theme === "light" ? <FiMoon /> : <FiSun />}
+            </button>
           </li>
         </ul>
       </nav>
