@@ -21,6 +21,7 @@ function PreviewFrame({ url, index, delayMs }) {
   const [state, setState] = useState("queued");
   const [startedAt, setStartedAt] = useState(null);
   const [loadedAt, setLoadedAt] = useState(null);
+  const [frameKey, setFrameKey] = useState(0);
 
   useEffect(() => {
     if (!url) {
@@ -28,20 +29,29 @@ function PreviewFrame({ url, index, delayMs }) {
       setState("idle");
       setStartedAt(null);
       setLoadedAt(null);
+      setFrameKey(0);
       return;
     }
 
+    // Reset state when URL changes
+    setSource("");
     setState("queued");
+    setFrameKey(0);
+    setStartedAt(null);
+    setLoadedAt(null);
+
+    // Each frame loads at a different time (staggered)
     const timer = setTimeout(() => {
-      // Add unique cache-busting parameters to each frame to capture different snapshots
-      // This simulates taking snapshots at different moments in time (like database snapshots)
-      // Each frame gets a unique timestamp + random component to force fresh fetch
-      const baseTimestamp = Date.now();
-      const frameTimestamp = baseTimestamp + (index * 50); // Stagger by 50ms per frame
-      const randomComponent = Math.random().toString(36).substring(7);
+      // Generate unique URL for each frame to force different snapshots
+      // Use current time + frame index to ensure each frame captures a different moment
+      const captureTime = Date.now() + (index * 200); // 200ms difference between frames
+      const randomId = Math.floor(Math.random() * 1000000);
       const separator = url.includes('?') ? '&' : '?';
-      const uniqueUrl = `${url}${separator}_t=${frameTimestamp}&_f=${index}&_r=${randomComponent}&_nocache=1`;
+      // Multiple cache-busting parameters to ensure fresh fetch
+      const uniqueUrl = `${url}${separator}_capture=${captureTime}&_frame=${index}&_id=${randomId}&_v=${Date.now()}`;
+      
       setSource(uniqueUrl);
+      setFrameKey(captureTime); // Force iframe remount with new key
       setStartedAt(performance.now());
       setState("loading");
     }, delayMs);
@@ -71,12 +81,12 @@ function PreviewFrame({ url, index, delayMs }) {
     <div className={`preview-frame ${state}`}>
       {source ? (
         <iframe
+          key={frameKey}
           src={source}
           title={`preview-${index}`}
           onLoad={handleLoad}
           onError={handleError}
           sandbox="allow-same-origin allow-scripts allow-forms"
-          loading="lazy"
           referrerPolicy="no-referrer"
         />
       ) : (

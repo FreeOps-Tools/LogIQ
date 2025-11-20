@@ -20,8 +20,9 @@ const App = () => {
   });
 
   const formatLatency = (value) => {
-    if (value === undefined || value === null) return "—";
+    if (value === undefined || value === null || isNaN(value)) return "—";
     const numeric = Number(value);
+    if (isNaN(numeric) || numeric < 0) return "—";
     return numeric >= 1000
       ? `${(numeric / 1000).toFixed(2)} s`
       : `${numeric.toFixed(0)} ms`;
@@ -72,18 +73,28 @@ const App = () => {
     try {
       const response = await axios.post(API_URL, { url: normalizedUrl });
       // Ensure all fields are properly set with fallbacks
+      let latencyMs = response.data.latencyMs;
+      if (latencyMs === undefined || latencyMs === null) {
+        // Fallback to responseTime if latencyMs is not available
+        if (response.data.responseTime) {
+          latencyMs = Number(response.data.responseTime) * 1000;
+        } else {
+          latencyMs = 0;
+        }
+      } else {
+        latencyMs = Number(latencyMs);
+      }
+
       const payload = {
         isUp: response.data.isUp ?? false,
         ipAddress: response.data.ipAddress || null,
-        latencyMs: response.data.latencyMs ?? response.data.responseTime ? Number(response.data.responseTime) * 1000 : 0,
+        latencyMs: latencyMs,
         dnsLookupMs: response.data.dnsLookupMs ?? 0,
         statusCode: response.data.statusCode || response.data.status || null,
         uptime: response.data.uptime ?? 0,
         requestedUrl: normalizedUrl,
         checkedAt: new Date().toISOString(),
       };
-      console.log('API Response:', response.data);
-      console.log('Processed Payload:', payload);
       setStatus((prevStatus) => [payload, ...prevStatus].slice(0, 6));
       setActivePreviewUrl(normalizedUrl);
 
