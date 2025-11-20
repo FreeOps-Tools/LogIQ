@@ -61,17 +61,19 @@ const App = () => {
       return;
     }
 
-    // Normalize the URL
-    let normalizedUrl = url.trim();
-    if (!/^https?:\/\//i.test(normalizedUrl)) {
-      normalizedUrl = `http://${normalizedUrl}`;
-    }
+    // Send URL as-is (backend will handle protocol detection)
+    const urlToAnalyze = url.trim();
 
     setIsLoading(true);
     setFormError(null);
 
     try {
-      const response = await axios.post(API_URL, { url: normalizedUrl });
+      const response = await axios.post(API_URL, { url: urlToAnalyze });
+      
+      if (!response || !response.data) {
+        throw new Error('Invalid response from server');
+      }
+      
       // Ensure all fields are properly set with fallbacks
       let latencyMs = response.data.latencyMs;
       if (latencyMs === undefined || latencyMs === null) {
@@ -85,6 +87,21 @@ const App = () => {
         latencyMs = Number(latencyMs);
       }
 
+      // Determine the final URL (backend may have changed protocol)
+      let finalUrl = urlToAnalyze;
+      const detectedProtocol = response.data.protocol || (urlToAnalyze.startsWith('http://') ? 'http' : 'https');
+      
+      if (!finalUrl.includes('://')) {
+        // No protocol in original URL, use what backend detected
+        finalUrl = `${detectedProtocol}://${finalUrl}`;
+      } else {
+        // Replace protocol with what backend determined (if different)
+        const currentProtocol = finalUrl.startsWith('https://') ? 'https' : 'http';
+        if (currentProtocol !== detectedProtocol) {
+          finalUrl = finalUrl.replace(/^https?:\/\//, `${detectedProtocol}://`);
+        }
+      }
+
       const payload = {
         isUp: response.data.isUp ?? false,
         ipAddress: response.data.ipAddress || null,
@@ -92,17 +109,29 @@ const App = () => {
         dnsLookupMs: response.data.dnsLookupMs ?? 0,
         statusCode: response.data.statusCode || response.data.status || null,
         uptime: response.data.uptime ?? 0,
-        requestedUrl: normalizedUrl,
+        protocol: detectedProtocol,
+        sslInfo: response.data.sslInfo || null,
+        requestedUrl: finalUrl,
         checkedAt: new Date().toISOString(),
       };
+      
       setStatus((prevStatus) => [payload, ...prevStatus].slice(0, 6));
-      setActivePreviewUrl(normalizedUrl);
+      setActivePreviewUrl(finalUrl);
 
-      // Check if the URL is secure
-      if (!normalizedUrl.startsWith("https://")) {
-        setFormError("The site is not secure (uses HTTP). Consider using HTTPS.");
+      // Show warning for HTTP sites
+      if (payload.protocol === 'http') {
+        setFormError("⚠️ This site uses HTTP (not secure). Your data could be intercepted. Consider using HTTPS or securing your site.");
+      } else {
+        setFormError(null);
       }
     } catch (error) {
+      console.error('Analysis error:', error);
+      // Determine URL for error case
+      let errorUrl = urlToAnalyze;
+      if (!errorUrl.includes('://')) {
+        errorUrl = `https://${errorUrl}`;
+      }
+      
       setStatus((prevStatus) => [
         {
           isUp: false,
@@ -110,13 +139,15 @@ const App = () => {
           uptime: 0,
           latencyMs: 0,
           dnsLookupMs: 0,
-          requestedUrl: normalizedUrl,
+          protocol: 'https',
+          sslInfo: null,
+          requestedUrl: errorUrl,
           checkedAt: new Date().toISOString(),
-          error: error.response?.data?.error || "Unable to analyze the site right now.",
+          error: error.response?.data?.error || error.message || "Unable to analyze the site right now.",
         },
         ...prevStatus,
       ]);
-      setActivePreviewUrl(normalizedUrl);
+      setActivePreviewUrl(errorUrl);
     }
     setIsLoading(false);
   };
@@ -193,7 +224,24 @@ const App = () => {
                     <dt>Status Code</dt>
                     <dd>{statusObj.statusCode || "—"}</dd>
                   </div>
+                  {statusObj.sslInfo && statusObj.sslInfo.expirationDate && (
+                    <div>
+                      <dt>SSL Expires</dt>
+                      <dd className={statusObj.sslInfo.daysUntilExpiry < 30 ? "ssl-warning" : ""}>
+                        {new Date(statusObj.sslInfo.expirationDate).toLocaleDateString()}
+                        {statusObj.sslInfo.daysUntilExpiry !== undefined && (
+                          <small> ({statusObj.sslInfo.daysUntilExpiry} days)</small>
+                        )}
+                      </dd>
+                    </div>
+                  )}
                 </dl>
+                {statusObj.protocol === 'http' && (
+                  <div className="http-warning">
+                    <strong>⚠️ Insecure Connection</strong>
+                    <p>This site uses HTTP. Your data could be intercepted. Consider using HTTPS or securing your site.</p>
+                  </div>
+                )}
                 <footer>
                   <time dateTime={statusObj.checkedAt}>
                     {new Date(statusObj.checkedAt).toLocaleTimeString()}

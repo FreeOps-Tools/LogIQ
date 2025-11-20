@@ -409,6 +409,45 @@ body {
   opacity: 0.8;
 }
 
+.http-warning {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  background: rgba(248, 113, 113, 0.15);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+}
+
+.http-warning strong {
+  display: block;
+  color: #dc2626;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.http-warning p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: inherit;
+  opacity: 0.9;
+}
+
+.App.dark .http-warning {
+  background: rgba(248, 113, 113, 0.2);
+  border-color: rgba(248, 113, 113, 0.4);
+}
+
+.ssl-warning {
+  color: #f59e0b;
+  font-weight: 600;
+}
+
+.ssl-warning small {
+  display: block;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+  opacity: 0.8;
+}
+
 .footer {
   margin-top: auto;
   background: #0f172a;
