@@ -227,10 +227,27 @@ const App = () => {
                   {statusObj.sslInfo && statusObj.sslInfo.expirationDate && (
                     <div>
                       <dt>SSL Expires</dt>
-                      <dd className={statusObj.sslInfo.daysUntilExpiry < 30 ? "ssl-warning" : ""}>
-                        {new Date(statusObj.sslInfo.expirationDate).toLocaleDateString()}
+                      <dd className={
+                        statusObj.sslInfo.daysUntilExpiry < 0 
+                          ? "ssl-expired" 
+                          : statusObj.sslInfo.daysUntilExpiry < 30 
+                            ? "ssl-warning" 
+                            : ""
+                      }>
+                        {new Date(statusObj.sslInfo.expirationDate).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'short',
+                          day: 'numeric'
+                        })}
                         {statusObj.sslInfo.daysUntilExpiry !== undefined && (
-                          <small> ({statusObj.sslInfo.daysUntilExpiry} days)</small>
+                          <small className="ssl-days">
+                            {statusObj.sslInfo.daysUntilExpiry < 0 
+                              ? ` (Expired ${Math.abs(statusObj.sslInfo.daysUntilExpiry)} days ago)`
+                              : statusObj.sslInfo.daysUntilExpiry === 0
+                                ? ' (Expires today)'
+                                : ` (${statusObj.sslInfo.daysUntilExpiry} ${statusObj.sslInfo.daysUntilExpiry === 1 ? 'day' : 'days'} remaining)`
+                            }
+                          </small>
                         )}
                       </dd>
                     </div>
