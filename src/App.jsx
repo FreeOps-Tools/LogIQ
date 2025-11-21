@@ -13,6 +13,7 @@ const App = () => {
   const [status, setStatus] = useState([]);
   const [formError, setFormError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [lighthouseLoading, setLighthouseLoading] = useState(false);
   const [activePreviewUrl, setActivePreviewUrl] = useState(null);
   const [theme, setTheme] = useState(() => {
     const savedTheme = localStorage.getItem("theme");
@@ -129,9 +130,21 @@ const App = () => {
         uptime: response.data.uptime ?? 0,
         protocol: detectedProtocol,
         sslInfo: response.data.sslInfo || null,
+        lighthouse: response.data.lighthouse || null,
         requestedUrl: finalUrl,
         checkedAt: new Date().toISOString(),
       };
+      
+      // Debug: Log lighthouse data if present
+      if (payload.lighthouse) {
+        console.log('Lighthouse data received:', payload.lighthouse);
+        setLighthouseLoading(false);
+      } else {
+        console.log('No Lighthouse data in response - may still be processing');
+        setLighthouseLoading(true);
+        // Check again after a delay if no lighthouse data
+        setTimeout(() => setLighthouseLoading(false), 35000);
+      }
       
       setStatus((prevStatus) => [payload, ...prevStatus].slice(0, 6));
       setActivePreviewUrl(finalUrl);
@@ -192,7 +205,7 @@ const App = () => {
               aria-label="Website URL to analyze"
             />
             <button type="submit" className={`button ${theme}`} disabled={isLoading}>
-              {isLoading ? "Analyzing…" : "Analyze"}
+              {isLoading ? (lighthouseLoading ? "Running Lighthouse…" : "Analyzing…") : "Analyze"}
             </button>
           </div>
           {formError && <p className="error">{formError}</p>}
